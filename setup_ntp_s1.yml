@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  roles:
+    - fail_on_overlayfs
+    - raspberry_config
+    - install_pkgs
+    - setup_gpsd

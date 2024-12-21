@@ -1,0 +1,32 @@
+---
+- name: "set gps pps pin in config.txt"
+  become: yes
+  become_user: root
+  ansible.builtin.ini_file:
+    path: "/boot/firmware/config.txt"
+    section: "all"
+    option: "dtoverlay=pps-gpio,gpiopin"
+    value: "4"
+    no_extra_spaces: yes
+    backup: false
+- name: "activate uart0 in config.txt"
+  become: yes
+  become_user: root
+  ansible.builtin.ini_file:
+    path: "/boot/firmware/config.txt"
+    section: "all"
+    option: "dtparam=uart0"
+    value: "on"
+    no_extra_spaces: yes
+    backup: false
+- name: "activate rtc battery charging in config.txt"
+  become: yes
+  become_user: root
+  ansible.builtin.ini_file:
+    path: "/boot/firmware/config.txt"
+    section: "all"
+    option: "dtparam=rtc_bbat_vchg"
+    value: "3000000"
+    no_extra_spaces: yes
+    backup: false
+
